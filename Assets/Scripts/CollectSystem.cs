@@ -4,15 +4,48 @@ public class CollectSystem : MonoBehaviour
 {
     [SerializeField] private Camera characterCamera;
     [SerializeField] private Transform hand;
-    
+
     private CollectableItem _itemInHand;
 
     private void Update()
     {
-        if (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began)
+        if (Input.GetMouseButtonDown(0))
         {
-            Ray ray = characterCamera.ScreenPointToRay(Input.GetTouch(0).position);
-            print("Hallo");
+            if (_itemInHand)
+            {
+                DropItem(_itemInHand);
+            }
+
+            else
+            {
+               Ray ray = characterCamera.ViewportPointToRay(Vector3.one * 0.5f);
+               RaycastHit hit;
+
+               if (Physics.Raycast(ray, out hit, 1.5f))
+               {
+                   var collectableItem = hit.transform.GetComponent<CollectableItem>();
+
+                   if (collectableItem)
+                   {
+                       CollectItem(collectableItem);
+                   }
+               }
+            }
         }
+    }
+
+    private void CollectItem(CollectableItem item)
+    {
+        _itemInHand = item;
+        item.RbItem.isKinematic = true;
+        item.transform.parent = hand;
+    }
+
+    private void DropItem(CollectableItem item)
+    {
+        _itemInHand = null;
+        item.transform.parent = null;
+        item.RbItem.isKinematic = false;
+        item.RbItem.AddForce(item.transform.forward * 2, ForceMode.VelocityChange);
     }
 }
