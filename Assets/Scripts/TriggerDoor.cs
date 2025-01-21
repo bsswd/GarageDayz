@@ -6,6 +6,6 @@ public class TriggerDoor : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        _targetDoor.transform.localRotation = new Quaternion(-90,0,0,0);
+        _targetDoor.transform.localScale = new Vector3(1f, 0.3f, 1f);
     }
 }

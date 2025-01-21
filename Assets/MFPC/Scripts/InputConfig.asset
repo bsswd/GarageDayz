@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: InputConfig
   m_EditorClassIdentifier: 
   initialInputType: 0
-  adaptationInput: 1
+  adaptationInput: 0
