@@ -5,11 +5,11 @@ public class CollectSystem : MonoBehaviour
     [SerializeField] private Camera characterCamera;
     [SerializeField] private Transform hand;
 
-    [SerializeField] private CollectableItem _itemInHand;
+    private CollectableItem _itemInHand;
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.touchCount > 0)
         {
             if (_itemInHand)
             {
