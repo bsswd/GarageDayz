@@ -18,11 +18,13 @@ public class CollectSystem : MonoBehaviour
 
             else
             {
-               Ray ray = characterCamera.ViewportPointToRay(Vector3.one * 0.5f);
+               var ray = characterCamera.ViewportPointToRay(Vector3.one * 0.5f);
                RaycastHit hit;
-
-               if (Physics.Raycast(ray, out hit, 1.5f))
+               
+               if (Physics.Raycast(ray, out hit, 2f))
                {
+                   print("if");
+                   
                    var collectableItem = hit.transform.GetComponent<CollectableItem>();
 
                    if (collectableItem)
