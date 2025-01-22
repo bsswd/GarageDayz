@@ -5,7 +5,7 @@ public class CollectSystem : MonoBehaviour
     [SerializeField] private Camera characterCamera;
     [SerializeField] private Transform hand;
 
-    private CollectableItem _itemInHand;
+    [SerializeField] private CollectableItem _itemInHand;
 
     private void Update()
     {
